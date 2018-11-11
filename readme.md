@@ -10,7 +10,7 @@
     4 
 ## 三、初步写一个基于swoole的TCP同步服务器程序
 
-~~~
+~~~php
 <?php
     //创建一个同步的Tcp的server
     $server = new swoole_server("0.0.0.0","9511",SWOOLE_BASE,SWOOLE_SOCK_TCP);
@@ -42,7 +42,7 @@
     //创建一个swoole的自定义进程,swoole_process是子进程的回调函数
     $process = new swoole_process(function($process) use ($server){
         foreach($server->connections as $key => $connection){
-            
+            $connection-> send();
         }
     });
     //创建一个自定义的进程
